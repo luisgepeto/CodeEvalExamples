@@ -9,8 +9,7 @@ main = do
 multiplyLines :: String -> IO ()
 multiplyLines line = do
     let Just pipeIndex = elemIndex '|' line
-        (firstListRaw, '|':secondListRaw) = splitAt pipeIndex line       
-        firstListAsString = words firstListRaw
-        secondListAsString = words secondListRaw
+        (firstListRaw, '|':secondListRaw) = splitAt pipeIndex line
+        [firstListAsString, secondListAsString] = map words [firstListRaw, secondListRaw]        
         multipliedList = zipWith (\x y -> show ((read x) * (read y))) firstListAsString secondListAsString
     putStrLn  $ unwords multipliedList
